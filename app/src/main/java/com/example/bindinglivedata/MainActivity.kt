@@ -1,0 +1,28 @@
+package com.example.bindinglivedata
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import com.example.bindinglivedata.databinding.ActivityMainBinding
+
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    lateinit var mainViewModel: MainViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+
+        binding.mainViewModel = mainViewModel
+        binding.lifecycleOwner = this
+
+
+    }
+}
